@@ -16,7 +16,7 @@ function App() {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Hello
+          Hellos
         </a>
         {/* https://github.com/netlify-labs/deploy-create-react-app/blob/master/netlify.toml */}
       </header>
