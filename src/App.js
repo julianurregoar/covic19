@@ -12,12 +12,13 @@ function App() {
         </p>
         <a
           className='App-link'
-          href='https://covic19.netlify.com/'
+          href='https://covid19.mathdro.id/api'
           target='_blank'
           rel='noopener noreferrer'
         >
-          Covic 19
+          Hello
         </a>
+        {/* https://github.com/netlify-labs/deploy-create-react-app/blob/master/netlify.toml */}
       </header>
     </div>
   );
