@@ -10,7 +10,7 @@ const LineChart = ({ data, text }) => {
         data={data}
         options={{
           chart: {
-            title: { text }
+            title: "Historical Growth"
             // subtitle: "in millions of dollars (USD)"
           }
         }}
