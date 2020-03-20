@@ -1,14 +1,15 @@
-import React, { Fragment, useState } from "react";
-import PropTypes from "prop-types";
-import useStats from "../../../useStats/useStats.js";
-import { Grid } from "@material-ui/core";
+import React, { Fragment, useState, useContext } from "react";
+//Context
+import AppContext from "../../../AppContext";
 
-const url = "https://covid19.mathdro.id/api";
+import ChartMultipleSeries from "../../../components/GoogleCharts/ChartMultipleSeries";
+import { wholeWorld } from "../../../dataConstructor/dataConstructor";
 
 const General = props => {
-  const { stats, loading, error } = useStats(url);
-
+  const { stats, loading, error } = useContext(AppContext);
   const [selectedCountry, setSelectedCountry] = useState("USA");
+
+  const data = wholeWorld(stats);
 
   if (loading) return <p>Loading...</p>;
   if (loading) return <p>Loading...</p>;
@@ -18,12 +19,10 @@ const General = props => {
     <div>
       <Fragment>
         <h2>Currently Showing {selectedCountry}</h2>
-        <Grid>{!loading && console.log(stats)}</Grid>
+        <ChartMultipleSeries data={data} title={"The Main 10 Countries"} />
       </Fragment>
     </div>
   );
 };
-
-General.propTypes = {};
 
 export default General;

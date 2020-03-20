@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Container, CssBaseline, Grid, makeStyles } from "@material-ui/core";
 import Header from "./Sections/Header";
 import MainPost from "./Sections/MainPost.js";
 import General from "./Sections/General";
-
+import Footer from "../../components/Footer/Footer";
 const mainPost = {
   title: "Corona Virus in front of you",
   description:
@@ -19,46 +19,28 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     margin: theme.spacing(1)
   },
-  container: {
-    paddingLeft: "30px" + "important!"
-  }
+  container: {}
 }));
 
 const MainPage = () => {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
+      <Header title='Cornova Virus 19 - Covid19' />
+
       <Container maxWidth='lg' className={classes.container}>
-        <Header title='Cornova Virus 19 - Covid19' />
         <main>
           <MainPost post={mainPost} />
-
-          <Grid container spacing={5} className={classes.mainGrid}>
+          {/* <Grid container direction='row' justify='center' alignItems='center'> */}
+          <Grid item xs={12}>
             <General />
-            {/* <iframe
-              width='1080'
-              height='720'
-              frameborder='0'
-              scrolling='no'
-              allowfullscreen
-              src='https://arcg.is/ynCLG'
-            ></iframe> */}
-            {/* <Main title='From the firehose' posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            /> */}
           </Grid>
+          {/* </Grid> */}
         </main>
       </Container>
-      {/* <Footer
-        title='Footer'
-        description='Something here to give the footer a purpose!'
-      /> */}
-    </React.Fragment>
+      <Footer title='Hello friends!' />
+    </Fragment>
   );
 };
 
