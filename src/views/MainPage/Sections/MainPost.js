@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(6),
       paddingRight: 0
     }
+  },
+  link: {
+    color: "red"
   }
 }));
 
@@ -66,7 +69,7 @@ export default function MainFeaturedPost(props) {
             <Typography variant='h5' color='inherit' paragraph>
               {post.description}
             </Typography>
-            <Link variant='subtitle1' href='#'>
+            <Link variant='subtitle1' href={post.link} className={classes.link}>
               {post.linkText}
             </Link>
           </div>

@@ -1,5 +1,5 @@
 // Load 10 countries
-export const wholeWorld = data => {
+export const countries = data => {
   const arr = [["Country", "Recovered", "Deaths", "Active"]];
 
   for (const obj in data) {
@@ -13,6 +13,24 @@ export const wholeWorld = data => {
     arr.push(newArray);
   }
   const result = arr.slice(0, 11);
+
+  return result;
+};
+
+// Load 10 countries
+export const daily = data => {
+  const arr = [["Date", "confirmed", "Recovered"]];
+
+  for (const obj in data) {
+    const daily = data[obj];
+    const newArray = [
+      daily.reportDateString,
+      daily.totalConfirmed,
+      daily.totalRecovered
+    ];
+    arr.push(newArray);
+  }
+  const result = arr;
 
   return result;
 };

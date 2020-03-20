@@ -21,9 +21,6 @@ export default function useStats(url) {
     }
     fetchData();
   }, [url]);
-  return {
-    stats,
-    loading,
-    error
-  };
+  const mainData = { stats, loading, error };
+  return mainData;
 }
