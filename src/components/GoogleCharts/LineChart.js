@@ -9,9 +9,9 @@ const LineChart = ({ data, text }) => {
         loader={<div>Loading Chart</div>}
         data={data}
         options={{
+          fontSize: 3,
           chart: {
             title: "Historical Growth"
-            // subtitle: "in millions of dollars (USD)"
           }
         }}
         rootProps={{ "data-testid": "3" }}

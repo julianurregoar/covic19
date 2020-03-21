@@ -5,20 +5,22 @@ const ChartMultipleSeries = ({ data, title }) => {
   return (
     <div>
       <Chart
-        chartType='BarChart'
+        chartType='Bar'
         loader={<div>Loading Chart</div>}
         data={data}
         options={{
           title: title,
           chartArea: { width: "70%" },
           isStacked: true,
+          fontSize: 1,
           hAxis: {
             title: "Total",
-            minValue: 0
+            minValue: 0,
+            textStyle: { fontSize: 1 }
           },
           vAxis: {
             title: "Country",
-            textStyle: { fontSize: 8 }
+            textStyle: { fontSize: 1 }
           }
         }}
         // For tests

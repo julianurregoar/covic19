@@ -12,7 +12,7 @@ export const countries = data => {
     ];
     arr.push(newArray);
   }
-  const result = arr.slice(0, 11);
+  const result = arr.slice(0, 6);
 
   return result;
 };
