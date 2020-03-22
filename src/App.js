@@ -12,6 +12,7 @@ const history = createBrowserHistory();
 const url = "https://covid19.mathdro.id/api/";
 const urlCountries = "https://covid19.mathdro.id/api/confirmed";
 const urlDaily = "https://covid19.mathdro.id/api/daily";
+const urlIsoCountries = "https://covid19.mathdro.id/api/countries";
 
 ///Update button
 
@@ -19,8 +20,9 @@ const App = () => {
   const general = useStats(url);
   const countries = useStats(urlCountries);
   const daily = useStats(urlDaily);
+  const isoCountries = useStats(urlIsoCountries);
 
-  const mainData = { general, countries, daily };
+  const mainData = { general, countries, daily, isoCountries };
   return (
     <AppContext.Provider value={{ mainData }}>
       <Router history={history}>

@@ -1,10 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-//core components
-import ChartMultipleSeries from "../GoogleCharts/ChartMultipleSeries";
-import LineChart from "../GoogleCharts/LineChart";
-
 //material
 import { Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,13 +26,13 @@ const useStyles = makeStyles(theme => ({
 }));
 const General = props => {
   const classes = useStyles();
-  const { stats, countryData, dailyData } = props;
+  const { stats, text } = props;
 
   return (
     <div>
       <Fragment>
         <div className={classes.root}>
-          <h2>Whole World</h2>
+          <h2>{text}</h2>
           <h4>Last update {stats.lastUpdate}</h4>
 
           <Grid container spacing={3}>
@@ -57,16 +53,6 @@ const General = props => {
                 <h2>Deaths</h2>
                 <h1 className={classes.deaths}>{stats.deaths.value}</h1>
               </Paper>
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
-              <h2>Historical Growth</h2>
-              <LineChart data={dailyData} text={"Day to Day Increase"} />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <h2>Top 5 countries</h2>
-              <ChartMultipleSeries data={countryData} />
             </Grid>
           </Grid>
         </div>

@@ -1,11 +1,17 @@
 import React, { Fragment, useContext } from "react";
 import { Container, CssBaseline, Grid, makeStyles } from "@material-ui/core";
+
+//components
 import Header from "./Sections/Header";
 import MainPost from "./Sections/MainPost.js";
 import General from "./Sections/General";
+import CountryFilter from "./Sections/CountryFilter";
+
+//core componets
 import Footer from "../../components/Footer/Footer";
+
+//context
 import AppContext from "../../AppContext";
-import { countries, daily } from "../../dataConstructor/dataConstructor";
 
 const mainPost = {
   title: "Corona Virus in front of you, Canada",
@@ -40,16 +46,19 @@ const MainPage = props => {
         loading: countriesLoading,
         error: countriesError
       },
-      daily: { stats: dailyStats, loading: dailyLoading, error: dailyError }
+      daily: { stats: dailyStats, loading: dailyLoading, error: dailyError },
+      isoCountries: {
+        stats: isoCountriesStats,
+        loading: isoCountriesLoading,
+        error: isoCountriesError
+      }
     }
   } = useContext(AppContext);
-  const countryData = countries(countriesStats);
-  const dailyData = daily(dailyStats);
 
-  // const [selectedCountry, setSelectedCountry] = useState("USA");
-  if (dailyLoading || generalLoading || countriesLoading)
+  if (dailyLoading || generalLoading || countriesLoading || isoCountriesLoading)
     return <p>Loading...</p>;
-  if (dailyError || generalError || countriesError) return <p>Error...</p>;
+  if (dailyError || generalError || countriesError || isoCountriesError)
+    return <p>Error...</p>;
   return (
     <Fragment>
       <CssBaseline />
@@ -59,17 +68,18 @@ const MainPage = props => {
           <MainPost post={mainPost} />
           <Grid item xs={12}>
             <General
-              stats={generalStats}
-              countryData={countryData}
-              dailyData={dailyData}
+              generalStats={generalStats}
+              countriesStats={countriesStats}
+              dailyStats={dailyStats}
             />
           </Grid>
           <Grid container direction='row' justify='center' alignItems='center'>
             <Grid item xs={12}>
-              <General
-                stats={generalStats}
-                countryData={countryData}
-                dailyData={dailyData}
+              <CountryFilter
+                generalStats={generalStats}
+                countryStats={countriesStats}
+                dailyStats={dailyStats}
+                isoCountriesStats={isoCountriesStats}
               />
             </Grid>
           </Grid>

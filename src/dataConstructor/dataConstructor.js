@@ -17,7 +17,7 @@ export const countries = data => {
   return result;
 };
 
-// Load 10 countries
+// Load daily
 export const daily = data => {
   const arr = [["Date", "confirmed", "Recovered"]];
 
@@ -31,6 +31,24 @@ export const daily = data => {
     arr.push(newArray);
   }
   const result = arr;
+
+  return result;
+};
+
+// Province
+export const province = data => {
+  const arr = [["Country", "Recovered", "Deaths", "Active"]];
+  for (const obj in data) {
+    const province = data[obj];
+    const newArray = [
+      province.provinceState,
+      province.recovered,
+      province.deaths,
+      province.active
+    ];
+    arr.push(newArray);
+  }
+  const result = arr.slice(0, 6);
 
   return result;
 };
