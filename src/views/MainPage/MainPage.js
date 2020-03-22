@@ -1,9 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Container, CssBaseline, Grid, makeStyles } from "@material-ui/core";
 import Header from "./Sections/Header";
 import MainPost from "./Sections/MainPost.js";
 import General from "./Sections/General";
 import Footer from "../../components/Footer/Footer";
+import AppContext from "../../AppContext";
+import { countries, daily } from "../../dataConstructor/dataConstructor";
 
 const mainPost = {
   title: "Corona Virus in front of you, Canada",
@@ -24,8 +26,30 @@ const useStyles = makeStyles(theme => ({
   container: {}
 }));
 
-const MainPage = () => {
+const MainPage = props => {
   const classes = useStyles();
+  const {
+    mainData: {
+      general: {
+        stats: generalStats,
+        loading: generalLoading,
+        error: generalError
+      },
+      countries: {
+        stats: countriesStats,
+        loading: countriesLoading,
+        error: countriesError
+      },
+      daily: { stats: dailyStats, loading: dailyLoading, error: dailyError }
+    }
+  } = useContext(AppContext);
+  const countryData = countries(countriesStats);
+  const dailyData = daily(dailyStats);
+
+  // const [selectedCountry, setSelectedCountry] = useState("USA");
+  if (dailyLoading || generalLoading || countriesLoading)
+    return <p>Loading...</p>;
+  if (dailyError || generalError || countriesError) return <p>Error...</p>;
   return (
     <Fragment>
       <CssBaseline />
@@ -34,11 +58,21 @@ const MainPage = () => {
         <main>
           <MainPost post={mainPost} />
           <Grid item xs={12}>
-            <General />
+            <General
+              stats={generalStats}
+              countryData={countryData}
+              dailyData={dailyData}
+            />
           </Grid>
-          {/* <Grid container direction='row' justify='center' alignItems='center'> */}
-
-          {/* </Grid> */}
+          <Grid container direction='row' justify='center' alignItems='center'>
+            <Grid item xs={12}>
+              <General
+                stats={generalStats}
+                countryData={countryData}
+                dailyData={dailyData}
+              />
+            </Grid>
+          </Grid>
         </main>
       </Container>
       <Footer title='Hello friends!' />
