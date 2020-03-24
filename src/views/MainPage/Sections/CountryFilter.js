@@ -4,8 +4,8 @@ import useStats from "../../../utils/useStats/useStats";
 
 const General = props => {
   const { isoCountriesStats } = props;
-
-  const [selectedCountry, setSelectedCountry] = useState("USA");
+  const { countries } = isoCountriesStats;
+  const [selectedCountry, setSelectedCountry] = useState("Canada");
 
   const { stats, loading, error } = useStats(
     `https://covid19.mathdro.id/api/countries/${selectedCountry}`
@@ -14,7 +14,7 @@ const General = props => {
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>Loading...</p>;
-  console.log(stats);
+
   return (
     <div>
       <Fragment>
@@ -24,17 +24,15 @@ const General = props => {
             setSelectedCountry(e.target.value);
           }}
         >
-          {Object.entries(isoCountriesStats.countries).map(
-            ([country, code]) => (
-              <option
-                selected={selectedCountry === isoCountriesStats.iso3[code]}
-                key={code}
-                value={isoCountriesStats.iso3[code]}
-              >
-                {country}
-              </option>
-            )
-          )}
+          {countries.map(country => (
+            <option
+              selected={selectedCountry === country.name}
+              key={country.name}
+              value={country.name}
+            >
+              {country.name}
+            </option>
+          ))}
         </select>
         <h4>Currently Showing Country</h4>
 

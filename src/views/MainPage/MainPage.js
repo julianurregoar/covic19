@@ -79,7 +79,7 @@ const MainPage = props => {
                 generalStats={generalStats}
                 countryStats={countriesStats}
                 dailyStats={dailyStats}
-                isoCountriesStats={isoCountriesStats}
+                isoCountriesStats={!isoCountriesLoading && isoCountriesStats}
               />
             </Grid>
           </Grid>
