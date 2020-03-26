@@ -19,14 +19,15 @@ export const countries = data => {
 
 // Load daily
 export const daily = data => {
-  const arr = [["Date", "confirmed", "Recovered"]];
+  const arr = [["Date", "confirmed", "Deaths"]];
 
   for (const obj in data) {
     const daily = data[obj];
     const newArray = [
-      daily.reportDateString,
+      daily.reportDate,
       daily.totalConfirmed,
-      daily.totalRecovered
+      // daily.totalRecovered,
+      daily.deaths.total
     ];
     arr.push(newArray);
   }
